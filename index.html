@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+
+
+        <h1>Please eat some cookies</h1>
+        <button id="Choco">ChocoCookie</button>
+        <button id="Fudge">FudgeCookie</button>
+        <button id="Sugar">SugarCookie</button>
+        <button id="clearCookies">RestRoom</button>
+
+
+
+        <script src="./node_modules/cookies-js/dist/cookies.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+
+
+//alert users on # of cookies
+        $(document).ready(function(){
+            if(Cookies.get("chocolateCookie") == undefined && Cookies.get("fudgeCookie") == undefined && Cookies.get("sugarCookie") == undefined || Cookies.get("chocolateCookie") == 0 && Cookies.get("fudgeCookie") == 0 && Cookies.get("sugarCookie") == 0){
+              alert("start eating cookies!");
+
+            }else {
+              console.log(Cookies.get("chocolateCookie"));
+              alert("You ate: " + Cookies.get("chocolateCookie") + " of the Chocolate, " + Cookies.get("fudgeCookie") + " of the Fudge and " + Cookies.get("sugarCookie")  + " of the Sugar Cookies.")
+            };
+        })
+
+
+//add choco cookie button
+        function UpdateChocolateValue(){
+          var cookieCount = Cookies.get("chocolateCookie");
+          if (Cookies.get("chocolateCookie") == undefined && Cookies.get("fudgeCookie") == undefined && Cookies.get("sugarCookie") == undefined){
+            Cookies.set("chocolateCookie", 1);
+            Cookies.set("fudgeCookie", 0);
+            Cookies.set("sugarCookie", 0);
+          }
+          else{
+            cookieCount = parseInt(cookieCount);
+            Cookies.set("chocolateCookie", ++cookieCount );
+          }
+        }
+          document.getElementById("Choco").addEventListener("click", UpdateChocolateValue);
+
+
+//add fudge cookie button
+        function UpdateFudgeValue(){
+          var cookieCount = Cookies.get("fudgeCookie");
+          if (Cookies.get("chocolateCookie") == undefined && Cookies.get("fudgeCookie") == undefined && Cookies.get("sugarCookie") == undefined){
+            Cookies.set("chocolateCookie", 0);
+            Cookies.set("fudgeCookie", 1);
+            Cookies.set("sugarCookie", 0);
+          }
+          else{
+            cookieCount = parseInt(cookieCount);
+            Cookies.set("fudgeCookie", ++cookieCount );
+          }
+        }
+        document.getElementById("Fudge").addEventListener("click", UpdateFudgeValue);
+
+
+//add sugar cookie button
+        function UpdateSugarValue(){
+          var cookieCount = Cookies.get("sugarCookie");
+          if (Cookies.get("chocolateCookie") == undefined && Cookies.get("fudgeCookie") == undefined && Cookies.get("sugarCookie") == undefined){
+            Cookies.set("chocolateCookie", 0);
+            Cookies.set("fudgeCookie", 0);
+            Cookies.set("sugarCookie", 1);
+          }
+          else{
+            cookieCount = parseInt(cookieCount);
+            Cookies.set("sugarCookie", ++cookieCount );
+          }
+        }
+        document.getElementById("Sugar").addEventListener("click", UpdateSugarValue);
+
+
+//delete cookie button
+        function eraseCookie(){
+          Cookies.set("chocolateCookie", 0)
+          Cookies.set("fudgeCookie", 0)
+          Cookies.set("sugarCookie", 0)
+        }
+        document.getElementById("clearCookies").addEventListener("click", eraseCookie);
+
+
+
+        </script>
+  </body>
+</html>
